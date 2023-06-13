@@ -40,6 +40,7 @@ dependencies:
   path_provider: ^2.0.0
   path: ^1.8.3
   logger:
+  go_router: 
 
 dev_dependencies:
   drift_dev: ^2.8.3

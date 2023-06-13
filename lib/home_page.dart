@@ -52,21 +52,7 @@ class HomePage extends StatelessWidget {
                 ),
                 ElevatedButton(
                     onPressed: () {
-                      logger.d(_categoryController.text);
-                      if (_formKey.currentState!.validate()) {
-                        if (_categoryController.text.isEmpty) {
-                          _memoRepository.saveMemo(
-                            content: _contentController.text,
-                          );
-                        } else {
-                          _memoRepository.saveMemo(
-                              content: _contentController.text,
-                              category: _categoryController.text);
-                        }
-
-                        _contentController.clear();
-                        _categoryController.clear();
-                      }
+                      saveMemo();
                     },
                     child: const Text("Save")),
                 Expanded(
@@ -78,9 +64,12 @@ class HomePage extends StatelessWidget {
                           return ListView.builder(
                               itemCount: memos1.length,
                               itemBuilder: (context, index) {
-                                return MemoTile(
-                                  memo: memos1[index],
-                                  memoRepository: _memoRepository,
+                                return InkWell(
+                                  onTap: (){},
+                                  child: MemoTile(
+                                    memo: memos1[index],
+                                    memoRepository: _memoRepository,
+                                  ),
                                 );
                               });
                         } else {
@@ -95,5 +84,22 @@ class HomePage extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void saveMemo() {
+    logger.d(_categoryController.text);
+    if (_formKey.currentState!.validate()) {
+      if (_categoryController.text.isEmpty) {
+        _memoRepository.saveMemo(
+          content: _contentController.text,
+        );
+      } else {
+        _memoRepository.saveMemo(
+            content: _contentController.text,
+            category: _categoryController.text);
+      }
+      _contentController.clear();
+      _categoryController.clear();
+    }
   }
 }
