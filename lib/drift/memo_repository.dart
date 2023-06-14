@@ -43,4 +43,19 @@ class MemoRepository extends ChangeNotifier {
   Stream<List<Memo>> readAll() {
     return _myDatabase.select(_myDatabase.memos).watch();
   }
+
+  //폴더 별 출력
+  Future<List<String>> readCategory() {
+    return (_myDatabase.selectOnly(_myDatabase.memos, distinct: true)
+          ..addColumns([_myDatabase.memos.folder]))
+        .map((row) => row.read(_myDatabase.memos.folder)!)
+        .get();
+  }
+
+  //폴더만 리스트로
+  Stream<List<Memo>> readMemoWithCategory(String folder) {
+    return (_myDatabase.select(_myDatabase.memos)
+          ..where((tbl) => tbl.folder.equals(folder)))
+        .watch();
+  }
 }

@@ -3,13 +3,13 @@ import 'package:drift_train/drift/memo_repository.dart';
 import 'package:flutter/material.dart';
 
 class MemoTile extends StatelessWidget {
-  MemoTile({Key? key, required this.memo, required this.memoRepository})
+  const MemoTile({Key? key, required this.memo, required this.memoRepository})
       : super(key: key);
 
   final Memo memo;
 
   // void Function()? onDelete;
-  MemoRepository memoRepository;
+  final MemoRepository memoRepository;
 
   @override
   Widget build(BuildContext context) {

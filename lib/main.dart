@@ -1,4 +1,3 @@
-import 'package:drift_train/home_page.dart';
 import 'package:drift_train/router/router.dart';
 import 'package:flutter/material.dart';
 import 'package:logger/logger.dart';
@@ -18,6 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp.router(
       debugShowCheckedModeBanner: false,
       routerConfig: myRouter.router,
+      theme: ThemeData(
+
+      ),
     );
   }
 }
