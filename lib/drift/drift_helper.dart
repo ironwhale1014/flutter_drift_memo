@@ -17,16 +17,13 @@ class Mydatabase extends _$Mydatabase {
 
   @override
   MigrationStrategy get migration {
-    return MigrationStrategy(
-        onCreate: (Migrator m) async {
-          await m.createAll();
-        },
-        onUpgrade: (Migrator m, int from, int to) async {
-          if (from < 2) {
-            await m.addColumn(memos, memos.folder);
-          }
-        }
-    );
+    return MigrationStrategy(onCreate: (Migrator m) async {
+      await m.createAll();
+    }, onUpgrade: (Migrator m, int from, int to) async {
+      if (from < 2) {
+        await m.addColumn(memos, memos.folder);
+      }
+    });
   }
 }
 

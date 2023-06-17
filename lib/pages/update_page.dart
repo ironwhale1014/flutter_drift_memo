@@ -49,6 +49,7 @@ class UpdatePage extends StatelessWidget {
                       border:
                           OutlineInputBorder(borderSide: BorderSide(width: 1))),
                 ),
+                const SizedBox(height: 10),
                 ElevatedButton(
                     onPressed: () {
                       if (_formKey.currentState!.validate()) {
