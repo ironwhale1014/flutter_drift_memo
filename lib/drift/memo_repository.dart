@@ -45,11 +45,11 @@ class MemoRepository extends ChangeNotifier {
   }
 
   //폴더 별 출력
-  Future<List<String>> readCategory() {
+  Stream<List<String>> readCategory() {
     return (_myDatabase.selectOnly(_myDatabase.memos, distinct: true)
           ..addColumns([_myDatabase.memos.folder]))
         .map((row) => row.read(_myDatabase.memos.folder)!)
-        .get();
+        .watch();
   }
 
   //폴더만 리스트로

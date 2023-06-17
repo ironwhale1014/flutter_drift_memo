@@ -1,5 +1,7 @@
 import 'package:drift_train/pages/base_page.dart';
 import 'package:drift_train/pages/folder_page.dart';
+import 'package:drift_train/pages/image_page.dart';
+import 'package:drift_train/pages/loadImage.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -15,9 +17,10 @@ class _HomePageState extends State<HomePage> {
   final List<BottomNavigationBarItem> _items = [
     const BottomNavigationBarItem(icon: Icon(Icons.home), label: "home"),
     const BottomNavigationBarItem(icon: Icon(Icons.folder), label: "folder"),
+    const BottomNavigationBarItem(icon: Icon(Icons.photo), label: "photo"),
   ];
 
-  final List<Widget> _pages = [BasePage(), FolderPage()];
+  final List<Widget> _pages = [BasePage(), FolderPage(), LoadImage()];
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +36,8 @@ class _HomePageState extends State<HomePage> {
           currentIndex = index;
           setState(() {});
         },
+        selectedItemColor: Colors.black87,
+        unselectedItemColor: Colors.grey,
       ),
     );
   }

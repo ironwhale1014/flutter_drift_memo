@@ -2,7 +2,6 @@ import 'package:drift_train/componets/folder_tile.dart';
 import 'package:drift_train/drift/memo_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
-
 import '../main.dart';
 
 class FolderPage extends StatelessWidget {
@@ -15,8 +14,8 @@ class FolderPage extends StatelessWidget {
     return SafeArea(
         child: Scaffold(
       appBar: AppBar(title: const Text("폴더별")),
-      body: FutureBuilder(
-        future: _memoRepository.readCategory(),
+      body: StreamBuilder<List<String>>(
+        stream: _memoRepository.readCategory(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             List<String> folderList = snapshot.data!;

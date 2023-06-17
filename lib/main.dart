@@ -20,7 +20,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
           useMaterial3: true,
           colorScheme: ColorScheme.fromSeed(
-              seedColor: Colors.white,
+              seedColor: Colors.amber,
               primary: Colors.orangeAccent,
               background: Colors.grey[50],
               secondary: Colors.blue,
