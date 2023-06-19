@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
 class FolderTile extends StatelessWidget {
-  FolderTile({Key? key, required this.folder}) : super(key: key);
+  const FolderTile({Key? key, required this.folder}) : super(key: key);
 
-  String folder;
+  final String folder;
 
   @override
   Widget build(BuildContext context) {

@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:drift_train/image_util/image_util.dart';
 import 'package:drift_train/main.dart';
 import 'package:drift_train/pages/image_page.dart';
 import 'package:extended_image/extended_image.dart';
@@ -7,19 +8,21 @@ import 'package:flutter/material.dart';
 import 'package:path_provider/path_provider.dart';
 
 class LoadImage extends StatefulWidget {
-  LoadImage({Key? key}) : super(key: key);
+  const LoadImage({Key? key}) : super(key: key);
 
   @override
   State<LoadImage> createState() => _LoadImageState();
 }
 
 class _LoadImageState extends State<LoadImage> {
-  String? imagePath;
-  bool _isImage = false;
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-    logger.d("build");
     return Scaffold(
         appBar: AppBar(
           title: const Text("photo"),
@@ -27,7 +30,7 @@ class _LoadImageState extends State<LoadImage> {
             IconButton(
                 onPressed: () {
                   Navigator.push(context,
-                          MaterialPageRoute(builder: (_) => ImagePage()))
+                          MaterialPageRoute(builder: (_) => const ImagePage()))
                       .then((value) {
                     setState(() {});
                   });
@@ -36,12 +39,12 @@ class _LoadImageState extends State<LoadImage> {
           ],
         ),
         body: FutureBuilder(
-          future: loadImage(),
+          future: imageUtil.imageLoad("folder"),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              return (_isImage)
+              return (imageUtil.isImage)
                   ? InkWell(
-                      onTap: deleteImage,
+                      onTap: () => imageUtil.imageDelete("folder"),
                       child: ExtendedImage.file(
                         snapshot.data!,
                         key: UniqueKey(),
@@ -56,16 +59,16 @@ class _LoadImageState extends State<LoadImage> {
         ));
   }
 
-  Future<File> loadImage() async {
-    Directory directory = await getApplicationDocumentsDirectory();
-    imagePath = directory.path;
-    _isImage = await File("$imagePath/save.png").exists();
-    return File("$imagePath/save.png");
-  }
-
-  void deleteImage() async {
-    await File("$imagePath/save.png").delete();
-    _isImage = false;
-    setState(() {});
-  }
+// Future<File> loadImage() async {
+//   Directory directory = await getApplicationDocumentsDirectory();
+//   imagePath = directory.path;
+//   _isImage = await File("$imagePath/save.png").exists();
+//   return File("$imagePath/save.png");
+// }
+//
+// void deleteImage() async {
+//   await File("$imagePath/save.png").delete();
+//   _isImage = false;
+//   setState(() {});
+// }
 }

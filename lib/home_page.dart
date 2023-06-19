@@ -1,7 +1,6 @@
 import 'package:drift_train/pages/base_page.dart';
 import 'package:drift_train/pages/folder_page.dart';
-import 'package:drift_train/pages/image_page.dart';
-import 'package:drift_train/pages/loadImage.dart';
+import 'package:drift_train/pages/load_image.dart';
 import 'package:flutter/material.dart';
 
 class HomePage extends StatefulWidget {
@@ -20,7 +19,7 @@ class _HomePageState extends State<HomePage> {
     const BottomNavigationBarItem(icon: Icon(Icons.photo), label: "photo"),
   ];
 
-  final List<Widget> _pages = [BasePage(), FolderPage(), LoadImage()];
+  final List<Widget> _pages = [BasePage(), FolderPage(), const LoadImage()];
 
   @override
   Widget build(BuildContext context) {
